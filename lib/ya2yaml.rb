@@ -58,15 +58,7 @@ class Ya2YAML
 					end
 					hash_keys.collect {|k|
 						key = emit(k,level + 1)
-						if (
-							is_one_plain_line?(key) ||
-							key =~ /\A(#{REX_BOOL}|#{REX_FLOAT}|#{REX_INT}|#{REX_NULL})\z/x
-						)
-							indent + key + ': ' + emit(obj[k],level + 1)
-						else
-							indent + '? ' + key +
-							indent + ': ' + emit(obj[k],level + 1)
-						end
+						indent + key + ': ' + emit(obj[k],level + 1)
 					}.join('')
 				end
 			when 'NilClass'
